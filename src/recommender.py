@@ -24,7 +24,6 @@ class UserProfile:
     favorite_genre: str
     favorite_mood: str
     target_energy: float
-    likes_acoustic: bool
     target_valence: float = 0.60
     target_tempo_bpm: float = 80
     target_danceability: float = 0.60
@@ -39,12 +38,57 @@ class Recommender:
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        scored_songs = []
+
+        for song in self.songs:
+            score = 0.0
+
+            if song.genre == user.favorite_genre:
+                score += 2.0
+
+            if song.mood == user.favorite_mood:
+                score += 1.5
+
+            score += max(0, 1 - abs(song.energy - user.target_energy)) * 1.5
+            score += max(0, 1 - abs(song.valence - user.target_valence))
+            score += max(0, 1 - abs(song.tempo_bpm - user.target_tempo_bpm) / 200)
+            score += max(0, 1 - abs(song.danceability - user.target_danceability))
+            score += max(0, 1 - abs(song.acousticness - user.target_acousticness))
+
+            scored_songs.append((song, score))
+
+        scored_songs.sort(key=lambda item: item[1], reverse=True)
+
+        return [item[0] for item in scored_songs[:k]]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        reasons = []
+
+        if song.genre == user.favorite_genre:
+            reasons.append("genre match")
+
+        if song.mood == user.favorite_mood:
+            reasons.append("mood match")
+
+        if abs(song.energy - user.target_energy) < 0.2:
+            reasons.append("similar energy")
+
+        if abs(song.valence - user.target_valence) < 0.2:
+            reasons.append("similar valence")
+
+        if abs(song.tempo_bpm - user.target_tempo_bpm) < 20:
+            reasons.append("similar tempo")
+
+        if abs(song.danceability - user.target_danceability) < 0.2:
+            reasons.append("similar danceability")
+
+        if abs(song.acousticness - user.target_acousticness) < 0.2:
+            reasons.append("similar acousticness")
+
+        if not reasons:
+            return "No strong preference matches."
+
+        return "Recommended because of: " + ", ".join(reasons)
 
 def load_songs(csv_path: str) -> List[Dict]:
     """Load songs from a CSV file and return them as a list of dictionaries."""
