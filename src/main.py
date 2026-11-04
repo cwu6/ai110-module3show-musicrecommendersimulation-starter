@@ -9,7 +9,7 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
-from recommender import load_songs, recommend_songs
+from .recommender import load_songs, recommend_songs
 
 
 def main() -> None:
@@ -17,25 +17,29 @@ def main() -> None:
 
     # Starter example profile
     user_prefs = {
-        "genre": "lofi",
-        "mood": "chill",
-        "energy": 0.40,
-        "valence": 0.60,
-        "tempo_bpm": 80,
-        "danceability": 0.60,
-        "acousticness": 0.75
+        "genre": "pop",
+        "mood": "happy",
+        "energy": 0.80,
+        "valence": 0.85,
+        "tempo_bpm": 120,
+        "danceability": 0.80,
+        "acousticness": 0.20
     }
 
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
+    print("\n" + "=" * 50)
+    print("          TOP 5 SONG RECOMMENDATIONS")
+    print("=" * 50)
+
+    for i, rec in enumerate(recommendations, start=1):
         song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
-        print()
+
+        print(f"\n{i}. {song['title']} - {song['artist']}")
+        print(f"   Score: {score:.2f}/9.00")
+        print(f"   Reasons: {explanation}")
+
+    print("\n" + "=" * 50)
 
 
 if __name__ == "__main__":

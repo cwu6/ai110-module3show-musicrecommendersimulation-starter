@@ -141,13 +141,34 @@ You can add more tests in `tests/test_recommender.py`.
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+==================================================
+          TOP 5 SONG RECOMMENDATIONS
+==================================================
+
+1. Sunrise City - Neon Echo
+   Score: 8.92/9.00
+   Reasons: genre match (+2.0), mood match (+1.5), energy similarity (+1.47), valence similarity (+0.99), tempo similarity (+0.99), danceability similarity (+0.99), acousticness similarity (+0.98)
+
+2. Gym Hero - Max Pulse
+   Score: 6.93/9.00
+   Reasons: genre match (+2.0), energy similarity (+1.30), valence similarity (+0.92), tempo similarity (+0.94), danceability similarity (+0.92), acousticness similarity (+0.85)
+
+3. Rooftop Lights - Indigo Parade
+   Score: 6.71/9.00
+   Reasons: mood match (+1.5), energy similarity (+1.44), valence similarity (+0.96), tempo similarity (+0.98), danceability similarity (+0.98), acousticness similarity (+0.85)
+
+4. Golden Horizon - Sol Mariposa
+   Score: 6.70/9.00
+   Reasons: mood match (+1.5), energy similarity (+1.43), valence similarity (+0.94), tempo similarity (+0.97), danceability similarity (+0.90), acousticness similarity (+0.96)
+
+5. Afterglow Avenue - Noah Blue
+   Score: 5.26/9.00
+   Reasons: energy similarity (+1.48), valence similarity (+0.98), tempo similarity (+0.99), danceability similarity (+0.89), acousticness similarity (+0.92)
+
+==================================================
 ```
+
+
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
 
