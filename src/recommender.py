@@ -21,10 +21,6 @@ class Song:
 
 @dataclass
 class UserProfile:
-    """
-    Represents a user's taste preferences.
-    Required by tests/test_recommender.py
-    """
     favorite_genre: str
     favorite_mood: str
     target_energy: float

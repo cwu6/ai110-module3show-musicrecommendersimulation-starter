@@ -32,6 +32,8 @@ Prompts:
 
 Avoid code here. Pretend you are explaining the idea to a friend who does not program.
 
+The music recommender uses content based filtering, so it compares the features of each song with a user's preference to calculate how well each song matches. The recommender uses seven features: genre, mood, energy, valence (how positive or negative a soung sounds), tempo (beats per minute), danceability, and acousticness. The user profile has the preferred genre, mood, energy level, valence, tempo, danceability, and acousticness. These preferences are compared with the corresponding features of every song. The system assigns points for exact matching of genres and moods. So if it is the exact genre the user prefers, the song earns 2 points, and exact mood matches earn 1.5 points. Then for the numericl features, it calculates the similarity scores. The more closely a song's features matches the user's preferences, the higher it scores. The maximum possible score is 9 points: Genre: 2 points, Mood: 1.5 points, Energy: 1.5 points, Valence: 1 point, Tempo: 1 point, Danceability: 1 point, and Acousticness: 1 point. The program scores every song, sorts them from highest to lowest score, and returns the top five recommendations with explanations of why each song received its score. In terms of changes I made from the starter logic, I implemented the CSV, weighted scoring, and recommendation rankings. The recoommendation function evalutes every song, calculates the scores, sorts the results, and provides explanations for each song recommendation.
+
 ---
 
 ## 4. Data  
